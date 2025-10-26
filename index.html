@@ -149,37 +149,33 @@
             z-index: 2;
         }
 
-        .product-image-container {
+        /* Product Gallery Section */
+        .product-gallery {
+            position: relative;
+        }
+
+        .main-image {
             position: relative;
             overflow: hidden;
             border-radius: 12px;
             box-shadow: 0 25px 50px rgba(0,0,0,0.1);
             transition: var(--transition);
-            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
-            background: linear-gradient(145deg, #ffffff, #f0f0f0);
-        }
-
-        .product-image-container:hover {
-            transform: perspective(1000px) rotateY(0) rotateX(0);
-            box-shadow: 0 35px 70px rgba(0,0,0,0.15);
-        }
-
-        /* MAIN PRODUCT IMAGE - Using your first image */
-        .product-image {
-            display: block;
-            width: 100%;
+            cursor: pointer;
             height: 600px;
             background-color: var(--secondary);
             background-image: url('Gemini_Generated_Image_fh8er4fh8er4fh8e.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            position: relative;
-            transition: var(--transition);
         }
 
-        .product-image::after {
-            content: "PREMIUM COTTON";
+        .main-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 35px 70px rgba(0,0,0,0.15);
+        }
+
+        .main-image::after {
+            content: "Click to enlarge";
             position: absolute;
             bottom: 20px;
             right: 20px;
@@ -189,6 +185,129 @@
             font-size: 12px;
             letter-spacing: 2px;
             border-radius: 4px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .main-image:hover::after {
+            opacity: 1;
+        }
+
+        .thumbnail-gallery {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.1);
+        }
+
+        .thumbnail.active {
+            border-color: var(--accent);
+        }
+
+        .thumbnail-1 {
+            background-image: url('Gemini_Generated_Image_fh8er4fh8er4fh8e.png');
+        }
+
+        .thumbnail-2 {
+            background-image: url('Gemini_Generated_Image_lt6fjblt6fjblt6f.png');
+        }
+
+        .thumbnail-3 {
+            background-image: url('Gemini_Generated_Image_6kgeb6kgeb6kgeb6.png');
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lightbox-close:hover {
+            color: var(--accent);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+        }
+
+        .lightbox-prev, .lightbox-next {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+
+        .lightbox-prev:hover, .lightbox-next:hover {
+            background: var(--accent);
+            transform: scale(1.1);
         }
 
         .product-info {
@@ -300,40 +419,6 @@
             color: var(--accent);
             font-size: 18px;
         }
-
-        /* Gallery Section */
-        .gallery {
-            padding: 100px 0;
-            background: var(--secondary);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .gallery-item {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            transition: var(--transition);
-            height: 400px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-        }
-
-        /* GALLERY IMAGES - Using your actual image filenames */
-        .gallery-item-1 { background-image: url('Gemini_Generated_Image_lt6fjblt6fjblt6f.png'); }
-        .gallery-item-2 { background-image: url('Gemini_Generated_Image_fh8er4fh8er4fh8e.png'); }
-        .gallery-item-3 { background-image: url('Gemini_Generated_Image_6kgeb6kgeb6kgeb6.png'); }
 
         /* Materials Section */
         .materials {
@@ -711,7 +796,7 @@
                 text-align: center;
             }
             
-            .product-image-container {
+            .main-image {
                 max-width: 500px;
                 margin: 0 auto;
             }
@@ -739,7 +824,7 @@
                 font-size: 40px;
             }
             
-            .materials, .testimonials, .contact, .gallery {
+            .materials, .testimonials, .contact {
                 padding: 80px 0;
             }
             
@@ -757,6 +842,10 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 10px;
+            }
+            
+            .thumbnail-gallery {
+                flex-wrap: wrap;
             }
         }
 
@@ -781,6 +870,10 @@
             .material-card, .testimonial-card {
                 padding: 25px 20px;
             }
+            
+            .main-image {
+                height: 400px;
+            }
         }
     </style>
 </head>
@@ -790,7 +883,6 @@
             <div class="header-content">
                 <a href="#" class="logo">Otavé</a>
                 <div class="nav-links">
-                    <a href="#gallery">Gallery</a>
                     <a href="#materials">Materials</a>
                     <a href="#testimonials">Testimonials</a>
                     <a href="#contact">Contact</a>
@@ -803,8 +895,13 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <div class="product-image-container fade-in">
-                        <div class="product-image"></div>
+                    <div class="product-gallery fade-in">
+                        <div class="main-image" id="mainImage"></div>
+                        <div class="thumbnail-gallery">
+                            <div class="thumbnail thumbnail-1 active" data-image="Gemini_Generated_Image_fh8er4fh8er4fh8e.png"></div>
+                            <div class="thumbnail thumbnail-2" data-image="Gemini_Generated_Image_lt6fjblt6fjblt6f.png"></div>
+                            <div class="thumbnail thumbnail-3" data-image="Gemini_Generated_Image_6kgeb6kgeb6kgeb6.png"></div>
+                        </div>
                     </div>
                     <div class="product-info fade-in delay-1">
                         <h1>Otavé Signature Tee</h1>
@@ -834,16 +931,23 @@
             </div>
         </section>
 
-        <section class="gallery" id="gallery">
-            <div class="container">
-                <h2 class="section-title">Gallery</h2>
-                <div class="gallery-grid">
-                    <div class="gallery-item gallery-item-1 fade-in"></div>
-                    <div class="gallery-item gallery-item-2 fade-in delay-1"></div>
-                    <div class="gallery-item gallery-item-3 fade-in delay-2"></div>
+        <!-- Lightbox Modal -->
+        <div class="lightbox" id="lightbox">
+            <div class="lightbox-content">
+                <img src="" alt="" class="lightbox-img" id="lightboxImg">
+                <button class="lightbox-close" id="lightboxClose">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="lightbox-nav">
+                    <button class="lightbox-prev" id="lightboxPrev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="lightbox-next" id="lightboxNext">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
-        </section>
+        </div>
 
         <section class="materials" id="materials">
             <div class="container">
@@ -967,15 +1071,111 @@
     </footer>
 
     <script>
-        // Simple form handling (frontend only)
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! In a real implementation, this would send your message to our team.');
-            this.reset();
-        });
-
-        // Add scroll animations
+        // Image Gallery Functionality
         document.addEventListener('DOMContentLoaded', function() {
+            const mainImage = document.getElementById('mainImage');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxClose = document.getElementById('lightboxClose');
+            const lightboxPrev = document.getElementById('lightboxPrev');
+            const lightboxNext = document.getElementById('lightboxNext');
+            
+            let currentImageIndex = 0;
+            const images = [
+                'Gemini_Generated_Image_fh8er4fh8er4fh8e.png',
+                'Gemini_Generated_Image_lt6fjblt6fjblt6f.png',
+                'Gemini_Generated_Image_6kgeb6kgeb6kgeb6.png'
+            ];
+            
+            // Set initial main image
+            mainImage.style.backgroundImage = `url('${images[0]}')`;
+            
+            // Thumbnail click event
+            thumbnails.forEach((thumb, index) => {
+                thumb.addEventListener('click', function() {
+                    // Update main image
+                    const imageUrl = this.getAttribute('data-image');
+                    mainImage.style.backgroundImage = `url('${imageUrl}')`;
+                    
+                    // Update active thumbnail
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update current image index
+                    currentImageIndex = index;
+                });
+            });
+            
+            // Main image click to open lightbox
+            mainImage.addEventListener('click', function() {
+                openLightbox(currentImageIndex);
+            });
+            
+            // Thumbnail click to open lightbox
+            thumbnails.forEach((thumb, index) => {
+                thumb.addEventListener('click', function() {
+                    openLightbox(index);
+                });
+            });
+            
+            // Open lightbox
+            function openLightbox(index) {
+                currentImageIndex = index;
+                lightboxImg.src = images[currentImageIndex];
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            // Close lightbox
+            lightboxClose.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Lightbox navigation
+            lightboxPrev.addEventListener('click', function() {
+                currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+                lightboxImg.src = images[currentImageIndex];
+                
+                // Update active thumbnail
+                thumbnails.forEach(t => t.classList.remove('active'));
+                thumbnails[currentImageIndex].classList.add('active');
+            });
+            
+            lightboxNext.addEventListener('click', function() {
+                currentImageIndex = (currentImageIndex + 1) % images.length;
+                lightboxImg.src = images[currentImageIndex];
+                
+                // Update active thumbnail
+                thumbnails.forEach(t => t.classList.remove('active'));
+                thumbnails[currentImageIndex].classList.add('active');
+            });
+            
+            // Close lightbox on ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Close lightbox when clicking outside the image
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Simple form handling (frontend only)
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! In a real implementation, this would send your message to our team.');
+                this.reset();
+            });
+            
+            // Add scroll animations
             const fadeElements = document.querySelectorAll('.fade-in');
             
             const fadeInObserver = new IntersectionObserver((entries) => {
