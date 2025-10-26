@@ -341,7 +341,7 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            margin-bottom: 35px;
+            margin-bottom: 25px;
         }
 
         .price {
@@ -358,7 +358,7 @@
         }
 
         .badge {
-            background: var(--accent);
+            background: #e74c3c;
             color: white;
             padding: 5px 12px;
             border-radius: 4px;
@@ -366,27 +366,79 @@
             font-weight: 500;
         }
 
-        .buy-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 18px 45px;
-            border-radius: 4px;
-            text-decoration: none;
+        /* Countdown Timer */
+        .countdown-container {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .countdown-title {
+            font-size: 18px;
+            margin-bottom: 15px;
             font-weight: 500;
-            font-size: 16px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .countdown-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .countdown-value {
+            font-size: 28px;
+            font-weight: 700;
+            background: rgba(255,255,255,0.1);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            backdrop-filter: blur(10px);
+        }
+
+        .countdown-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        /* Buy Now Button */
+        .buy-now-button {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: var(--white);
+            padding: 22px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 20px;
             transition: var(--transition);
             border: none;
             cursor: pointer;
             letter-spacing: 1px;
-            box-shadow: 0 10px 20px rgba(193, 154, 107, 0.3);
+            box-shadow: 0 15px 30px rgba(231, 76, 60, 0.4);
             position: relative;
             overflow: hidden;
+            text-align: center;
+            margin-bottom: 25px;
         }
 
-        .buy-button::before {
+        .buy-now-button::before {
             content: "";
             position: absolute;
             top: 0;
@@ -397,14 +449,19 @@
             transition: var(--transition);
         }
 
-        .buy-button:hover {
-            background-color: var(--accent-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(193, 154, 107, 0.4);
+        .buy-now-button:hover {
+            background: linear-gradient(135deg, #c0392b, #a93226);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(231, 76, 60, 0.6);
         }
 
-        .buy-button:hover::before {
+        .buy-now-button:hover::before {
             left: 100%;
+        }
+
+        .buy-now-button i {
+            margin-right: 10px;
+            font-size: 22px;
         }
 
         .features {
@@ -851,6 +908,16 @@
             .thumbnail-gallery {
                 flex-wrap: wrap;
             }
+            
+            .countdown-timer {
+                gap: 10px;
+            }
+            
+            .countdown-value {
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -877,6 +944,21 @@
             
             .main-image {
                 height: 400px;
+            }
+            
+            .countdown-timer {
+                gap: 5px;
+            }
+            
+            .countdown-value {
+                width: 45px;
+                height: 45px;
+                font-size: 20px;
+            }
+            
+            .buy-now-button {
+                padding: 18px 20px;
+                font-size: 18px;
             }
         }
     </style>
@@ -911,16 +993,41 @@
                     <div class="product-info fade-in delay-1">
                         <h1>Otavé Signature Tee</h1>
                         <p class="description">Crafted from the finest organic cotton with meticulous attention to detail. Our signature t-shirt offers unparalleled comfort and a perfect fit for those who appreciate timeless elegance.</p>
-                        <div class="price-container">
-                            <div class="price">$49.99</div>
-                            <div class="original-price">$64.99</div>
-                            <div class="badge">LIMITED TIME</div>
+                        
+                        <div class="countdown-container">
+                            <div class="countdown-title">LIMITED TIME OFFER ENDS IN:</div>
+                            <div class="countdown-timer">
+                                <div class="countdown-item">
+                                    <div class="countdown-value" id="days">00</div>
+                                    <div class="countdown-label">Days</div>
+                                </div>
+                                <div class="countdown-item">
+                                    <div class="countdown-value" id="hours">00</div>
+                                    <div class="countdown-label">Hours</div>
+                                </div>
+                                <div class="countdown-item">
+                                    <div class="countdown-value" id="minutes">00</div>
+                                    <div class="countdown-label">Minutes</div>
+                                </div>
+                                <div class="countdown-item">
+                                    <div class="countdown-value" id="seconds">00</div>
+                                    <div class="countdown-label">Seconds</div>
+                                </div>
+                            </div>
                         </div>
+                        
+                        <div class="price-container">
+                            <div class="price">$39</div>
+                            <div class="original-price">$99</div>
+                            <div class="badge">60% OFF</div>
+                        </div>
+                        
                         <!-- REPLACE THIS PAYPAL LINK WITH YOUR ACTUAL PAYPAL BUY NOW LINK -->
-                        <a href="https://www.paypal.com/checkoutnow?token=YOUR_TOKEN_HERE" class="buy-button">
-                            <i class="fas fa-shopping-bag"></i>
-                            Add to Cart
+                        <a href="https://www.paypal.com/checkoutnow?token=YOUR_TOKEN_HERE" class="buy-now-button">
+                            <i class="fas fa-bolt"></i>
+                            BUY NOW - LIMITED TIME OFFER
                         </a>
+                        
                         <div class="features">
                             <div class="feature">
                                 <i class="fas fa-check"></i>
@@ -1076,6 +1183,49 @@
     </footer>
 
     <script>
+        // Countdown Timer Functionality
+        function updateCountdown() {
+            // Get the stored end time or set a new one (3 days from now)
+            let endTime = localStorage.getItem('countdownEndTime');
+            
+            if (!endTime) {
+                // Set end time to 3 days from now
+                endTime = new Date();
+                endTime.setDate(endTime.getDate() + 3);
+                localStorage.setItem('countdownEndTime', endTime);
+            } else {
+                endTime = new Date(endTime);
+            }
+            
+            const now = new Date();
+            const timeRemaining = endTime - now;
+            
+            if (timeRemaining <= 0) {
+                // Reset the countdown
+                endTime = new Date();
+                endTime.setDate(endTime.getDate() + 3);
+                localStorage.setItem('countdownEndTime', endTime);
+                updateCountdown();
+                return;
+            }
+            
+            // Calculate days, hours, minutes, seconds
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+            
+            // Update the display
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
+        
         // Image Gallery Functionality
         document.addEventListener('DOMContentLoaded', function() {
             const mainImage = document.getElementById('mainImage');
